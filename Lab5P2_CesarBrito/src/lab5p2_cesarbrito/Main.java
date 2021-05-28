@@ -98,6 +98,10 @@ public class Main extends javax.swing.JFrame {
         tf_especialidad_p1 = new javax.swing.JTextField();
         js_edad_p1 = new javax.swing.JSpinner();
         jLabel29 = new javax.swing.JLabel();
+        popup_crud = new javax.swing.JPopupMenu();
+        Eliminar = new javax.swing.JMenuItem();
+        Listar = new javax.swing.JMenuItem();
+        Modificar = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jb_jugador = new javax.swing.JButton();
@@ -120,6 +124,11 @@ public class Main extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Psicólogos");
         treeNode1.add(treeNode2);
         jtree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtreeMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtree);
 
         javax.swing.GroupLayout jd_jtreeLayout = new javax.swing.GroupLayout(jd_jtree.getContentPane());
@@ -509,6 +518,20 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        popup_crud.add(Eliminar);
+
+        Listar.setText("Listar");
+        popup_crud.add(Listar);
+
+        Modificar.setText("Modificar");
+        popup_crud.add(Modificar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
@@ -672,7 +695,7 @@ public class Main extends javax.swing.JFrame {
 
     private void agregar_entrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_entrenadorActionPerformed
         // TODO add your handling code here:
-        try {            
+        try {
             String nombre = tf_nombre_e.getText();
             String apellido = tf_apellido_e.getText();
             String nacionalidad = tf_nacionalidad_e.getText();
@@ -711,7 +734,7 @@ public class Main extends javax.swing.JFrame {
 
     private void agregar_preparadorfisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_preparadorfisicoActionPerformed
         // TODO add your handling code here:
-        try {            
+        try {
             String nombre = tf_nombre_p.getText();
             String apellido = tf_apellido_p.getText();
             String nacionalidad = tf_nacionalidad_p.getText();
@@ -746,7 +769,7 @@ public class Main extends javax.swing.JFrame {
 
     private void agregar_psicologoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_psicologoActionPerformed
         // TODO add your handling code here:
-        try {            
+        try {
             int informes = 0, jugadoresAtendidos = 0;
             String nombre = tf_nombre_p1.getText();
             String apellido = tf_apellido_p1.getText();
@@ -794,6 +817,26 @@ public class Main extends javax.swing.JFrame {
         jd_preparadorfisico.setVisible(true);
     }//GEN-LAST:event_jb_preparadorfisicoActionPerformed
 
+    private void jtreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtreeMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            Object v1 = jtree.getSelectionPath().getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Persona) {
+                persona_seleccionada = (Persona) nodo_seleccionado.getUserObject();
+                popup_crud.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jtreeMouseClicked
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
+        m.removeNodeFromParent(nodo_seleccionado);
+        m.reload();
+
+    }//GEN-LAST:event_EliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -830,6 +873,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Listar;
+    private javax.swing.JMenuItem Modificar;
     private javax.swing.JButton agregar_entrenador;
     private javax.swing.JButton agregar_jugador;
     private javax.swing.JButton agregar_preparadorfisico;
@@ -890,6 +936,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner js_numero;
     private javax.swing.JTree jtree;
     private javax.swing.JMenuItem menuItem_jtree;
+    private javax.swing.JPopupMenu popup_crud;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_apellido_e;
     private javax.swing.JTextField tf_apellido_p;
@@ -908,4 +955,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_titulo_p1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Persona> personas = new ArrayList();
+    DefaultMutableTreeNode nodo_seleccionado;
+    Persona persona_seleccionada;
+    int indexpersona;
 }
