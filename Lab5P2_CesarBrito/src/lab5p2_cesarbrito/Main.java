@@ -119,6 +119,7 @@ public class Main extends javax.swing.JFrame {
         modificar = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
         jlist = new javax.swing.JList<>();
+        jLabel27 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jb_jugador = new javax.swing.JButton();
@@ -698,15 +699,27 @@ public class Main extends javax.swing.JFrame {
         );
 
         jlist.setModel(new DefaultListModel());
+        jlist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlistMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(jlist);
+
+        jLabel27.setText("Hace double click para modificar");
 
         javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar.getContentPane());
         modificar.getContentPane().setLayout(modificarLayout);
         modificarLayout.setHorizontalGroup(
             modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modificarLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modificarLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(modificarLayout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jLabel27)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         modificarLayout.setVerticalGroup(
@@ -714,7 +727,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(modificarLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel27)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1131,6 +1146,10 @@ public class Main extends javax.swing.JFrame {
             modelo.addElement(tarjetasAmarillas);
             modelo.addElement(tarjetasRojas);
             jlist.setModel(modelo);
+            modificar.setModal(true);
+            modificar.pack();
+            modificar.setLocationRelativeTo(this);
+            modificar.setVisible(true);
         } else if (persona_seleccionada instanceof Entrenador) {
             Entrenador x = (Entrenador) persona_seleccionada;
             String nombre = x.getNombre();
@@ -1148,6 +1167,10 @@ public class Main extends javax.swing.JFrame {
             modelo.addElement(copas);
             modelo.addElement(contrato);
             jlist.setModel(modelo);
+            modificar.setModal(true);
+            modificar.pack();
+            modificar.setLocationRelativeTo(this);
+            modificar.setVisible(true);
         } else if (persona_seleccionada instanceof PreparadorFisico) {
             PreparadorFisico x = (PreparadorFisico) persona_seleccionada;
             String nombre = x.getNombre();
@@ -1158,7 +1181,7 @@ public class Main extends javax.swing.JFrame {
             int id = x.getEdad();
             int edad = x.getId();
             int contrato = x.getContrato();
-DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+            DefaultListModel modelo = (DefaultListModel) jlist.getModel();
             modelo.removeAllElements();;
             modelo.addElement(nombre);
             modelo.addElement(apellido);
@@ -1169,6 +1192,10 @@ DefaultListModel modelo = (DefaultListModel) jlist.getModel();
             modelo.addElement(edad);
             modelo.addElement(contrato);
             jlist.setModel(modelo);
+            modificar.setModal(true);
+            modificar.pack();
+            modificar.setLocationRelativeTo(this);
+            modificar.setVisible(true);
         } else if (persona_seleccionada instanceof Psicologo) {
             Psicologo x = (Psicologo) persona_seleccionada;
             int informes = x.getInformes();
@@ -1180,9 +1207,116 @@ DefaultListModel modelo = (DefaultListModel) jlist.getModel();
             String titulo = x.getTitulo();
             int id = x.getId();
             int edad = x.getEdad();
-
+            DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+            modelo.removeAllElements();;
+            modelo.addElement(nombre);
+            modelo.addElement(apellido);
+            modelo.addElement(nacionalidad);
+            modelo.addElement(especialidad);
+            modelo.addElement(titulo);
+            modelo.addElement(id);
+            modelo.addElement(edad);
+            modelo.addElement(informes);
+            modelo.addElement(jugadoresAtendidos);
+            jlist.setModel(modelo);
+            modificar.setModal(true);
+            modificar.pack();
+            modificar.setLocationRelativeTo(this);
+            modificar.setVisible(true);
         }
     }//GEN-LAST:event_ModificarActionPerformed
+
+    private void jlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistMouseClicked
+        // TODO add your handling code here:
+        try {
+            if (jlist.getSelectedIndex() >= 0 && evt.getClickCount() == 2) {
+                DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+                int po = jlist.getSelectedIndex();
+                if (persona_seleccionada instanceof Jugador) {
+                    Jugador x = (Jugador) persona_seleccionada;
+                    if (po == 0) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre: ");
+                        x.setNombre(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 1) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el apellido: ");
+                        x.setApellido(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 2) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la nacionalidad: ");
+                        x.setNacionalidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 3) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));
+                        x.setEdad(num);
+                        modelo.set(po, num);
+                    } else if (po == 4) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero: "));
+                        x.setNumero(num);
+                        modelo.set(po, num);
+                    } else if (po == 5) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese los años del contrato: "));
+                        x.setContrato(num);
+                        modelo.set(po, num);
+                    } else if (po == 6) {
+                        int partidosJugados = Integer.parseInt(JOptionPane.showInputDialog("Ingrese partidos jugados: "));
+                        x.setPartidosJugados(partidosJugados);
+                        modelo.set(po, partidosJugados);
+                    } else if (po == 7) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese las copas ganadas: "));
+                        x.setCopasGanadas(num);
+                        modelo.set(po, num);
+                    } else if (po == 8) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese las tarjetas amarillas: "));
+                        x.setTarjetasAmarillas(num);
+                        modelo.set(po, num);
+                    } else if (po == 9) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese las tarjetas rojas: "));
+                        x.setTarjetasRojas(num);
+                        modelo.set(po, num);
+                    }
+                    DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
+                    nodo_seleccionado.setUserObject(x);
+                    m.reload();
+                } else if (persona_seleccionada instanceof Entrenador) {
+                    Entrenador x = (Entrenador) persona_seleccionada;
+                    String nombre = x.getNombre();
+                    String apellido = x.getApellido();
+                    String nacionalidad = x.getNacionalidad();
+                    int edad = x.getEdad();
+                    int copas = x.getContrato();
+                    int contrato = x.getContrato();
+                    DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
+                    nodo_seleccionado.setUserObject(x);
+                    m.reload();
+                } else if (persona_seleccionada instanceof PreparadorFisico) {
+                    PreparadorFisico x = (PreparadorFisico) persona_seleccionada;
+                    String nombre = x.getNombre();
+                    String apellido = x.getApellido();
+                    String nacionalidad = x.getNacionalidad();
+                    String especialidad = x.getEspecialidad();
+                    String titulo = x.getTitulo();
+                    int id = x.getEdad();
+                    int edad = x.getId();
+                    int contrato = x.getContrato();
+                } else if (persona_seleccionada instanceof Psicologo) {
+                    Psicologo x = (Psicologo) persona_seleccionada;
+                    int informes = x.getInformes();
+                    int jugadoresAtendidos = x.getJugadoresAtendidos();
+                    String nombre = x.getNombre();
+                    String apellido = x.getApellido();
+                    String nacionalidad = x.getNacionalidad();
+                    String especialidad = x.getEspecialidad();
+                    String titulo = x.getTitulo();
+                    int id = x.getId();
+                    int edad = x.getEdad();
+                }
+                jlist.setModel(modelo);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_entrenador, "OCURRIO UN ERROR");
+        }
+    }//GEN-LAST:event_jlistMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1248,6 +1382,7 @@ DefaultListModel modelo = (DefaultListModel) jlist.getModel();
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
