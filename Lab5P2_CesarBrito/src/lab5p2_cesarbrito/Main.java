@@ -6,7 +6,9 @@
 package lab5p2_cesarbrito;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -102,6 +104,21 @@ public class Main extends javax.swing.JFrame {
         Eliminar = new javax.swing.JMenuItem();
         Listar = new javax.swing.JMenuItem();
         Modificar = new javax.swing.JMenuItem();
+        listar_jugador = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_jugador = new javax.swing.JTable();
+        listar_entrenador = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_entrenador = new javax.swing.JTable();
+        listar_preparador = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jt_preparador = new javax.swing.JTable();
+        listar_psicologo = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jt_psicologo = new javax.swing.JTable();
+        modificar = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jlist = new javax.swing.JList<>();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jb_jugador = new javax.swing.JButton();
@@ -527,10 +544,178 @@ public class Main extends javax.swing.JFrame {
         popup_crud.add(Eliminar);
 
         Listar.setText("Listar");
+        Listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarActionPerformed(evt);
+            }
+        });
         popup_crud.add(Listar);
 
         Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
         popup_crud.add(Modificar);
+
+        jt_jugador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Nacionalidad", "Edad", "Numero", "Partidos", "Copas ", "Amarillas", "Rojas", "Años"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jt_jugador);
+
+        javax.swing.GroupLayout listar_jugadorLayout = new javax.swing.GroupLayout(listar_jugador.getContentPane());
+        listar_jugador.getContentPane().setLayout(listar_jugadorLayout);
+        listar_jugadorLayout.setHorizontalGroup(
+            listar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_jugadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listar_jugadorLayout.setVerticalGroup(
+            listar_jugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_jugadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jt_entrenador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Nacionalidad", "Edad", "Contrato", "Copas Gandas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jt_entrenador);
+
+        javax.swing.GroupLayout listar_entrenadorLayout = new javax.swing.GroupLayout(listar_entrenador.getContentPane());
+        listar_entrenador.getContentPane().setLayout(listar_entrenadorLayout);
+        listar_entrenadorLayout.setHorizontalGroup(
+            listar_entrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_entrenadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listar_entrenadorLayout.setVerticalGroup(
+            listar_entrenadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_entrenadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jt_preparador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Nacionalidad", "Edad", "ID", "Contrato", "Especialidad", "Titulo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jt_preparador);
+
+        javax.swing.GroupLayout listar_preparadorLayout = new javax.swing.GroupLayout(listar_preparador.getContentPane());
+        listar_preparador.getContentPane().setLayout(listar_preparadorLayout);
+        listar_preparadorLayout.setHorizontalGroup(
+            listar_preparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_preparadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listar_preparadorLayout.setVerticalGroup(
+            listar_preparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_preparadorLayout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 25, Short.MAX_VALUE))
+        );
+
+        jt_psicologo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Nacionalidad", "Edad", "ID", "Informes", "Jugadores", "Titulo", "Especialidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jt_psicologo);
+
+        javax.swing.GroupLayout listar_psicologoLayout = new javax.swing.GroupLayout(listar_psicologo.getContentPane());
+        listar_psicologo.getContentPane().setLayout(listar_psicologoLayout);
+        listar_psicologoLayout.setHorizontalGroup(
+            listar_psicologoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_psicologoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listar_psicologoLayout.setVerticalGroup(
+            listar_psicologoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listar_psicologoLayout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 25, Short.MAX_VALUE))
+        );
+
+        jlist.setModel(new DefaultListModel());
+        jScrollPane6.setViewportView(jlist);
+
+        javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar.getContentPane());
+        modificar.getContentPane().setLayout(modificarLayout);
+        modificarLayout.setHorizontalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        modificarLayout.setVerticalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -837,6 +1022,168 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_EliminarActionPerformed
 
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+        // TODO add your handling code here:        
+        if (persona_seleccionada instanceof Jugador) {
+            Jugador x = (Jugador) persona_seleccionada;
+            int partidosJugados = x.getPartidosJugados();
+            int copasGanadas = x.getCopasGanadas();
+            int tarjetasAmarillas = x.getTarjetasAmarillas();
+            int tarjetasRojas = x.getTarjetasRojas();
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            int edad = (Integer) x.getEdad();
+            int numero = (Integer) x.getNumero();
+            int contrato = (Integer) x.getContrato();
+            Object[] listar = {nombre, apellido, nacionalidad, edad, numero, partidosJugados, copasGanadas, tarjetasAmarillas, tarjetasRojas, contrato};
+            DefaultTableModel modelo = (DefaultTableModel) jt_jugador.getModel();
+            modelo.removeRow(0);
+            modelo.addRow(listar);
+            jt_jugador.setModel(modelo);
+            listar_jugador.setModal(true);
+            listar_jugador.pack();
+            listar_jugador.setLocationRelativeTo(this);
+            listar_jugador.setVisible(true);
+        } else if (persona_seleccionada instanceof Entrenador) {
+            Entrenador x = (Entrenador) persona_seleccionada;
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            int edad = x.getEdad();
+            int copas = x.getContrato();
+            int contrato = x.getContrato();
+            Object[] listar = {nombre, apellido, nacionalidad, edad, contrato, copas};
+            DefaultTableModel modelo = (DefaultTableModel) jt_entrenador.getModel();
+            modelo.removeRow(0);
+            modelo.addRow(listar);
+            jt_entrenador.setModel(modelo);
+            listar_entrenador.setModal(true);
+            listar_entrenador.pack();
+            listar_entrenador.setLocationRelativeTo(this);
+            listar_entrenador.setVisible(true);
+        } else if (persona_seleccionada instanceof PreparadorFisico) {
+            PreparadorFisico x = (PreparadorFisico) persona_seleccionada;
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            String especialidad = x.getEspecialidad();
+            String titulo = x.getTitulo();
+            int id = x.getEdad();
+            int edad = x.getId();
+            int contrato = x.getContrato();
+            Object[] listar = {nombre, apellido, nacionalidad, edad, id, contrato, especialidad, titulo};
+            DefaultTableModel modelo = (DefaultTableModel) jt_preparador.getModel();
+            modelo.removeRow(0);
+            modelo.addRow(listar);
+            jt_preparador.setModel(modelo);
+            listar_preparador.setModal(true);
+            listar_preparador.pack();
+            listar_preparador.setLocationRelativeTo(this);
+            listar_preparador.setVisible(true);
+        } else if (persona_seleccionada instanceof Psicologo) {
+            Psicologo x = (Psicologo) persona_seleccionada;
+            int informes = x.getInformes();
+            int jugadoresAtendidos = x.getJugadoresAtendidos();
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            String especialidad = x.getEspecialidad();
+            String titulo = x.getTitulo();
+            int id = x.getId();
+            int edad = x.getEdad();
+            Object[] listar = {nombre, apellido, nacionalidad, edad, id, informes, jugadoresAtendidos, titulo, especialidad};
+            DefaultTableModel modelo = (DefaultTableModel) jt_psicologo.getModel();
+            modelo.removeRow(0);
+            modelo.addRow(listar);
+            jt_psicologo.setModel(modelo);
+            listar_psicologo.setModal(true);
+            listar_psicologo.pack();
+            listar_psicologo.setLocationRelativeTo(this);
+            listar_psicologo.setVisible(true);
+        }
+    }//GEN-LAST:event_ListarActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:        
+        if (persona_seleccionada instanceof Jugador) {
+            Jugador x = (Jugador) persona_seleccionada;
+            int partidosJugados = x.getPartidosJugados();
+            int copasGanadas = x.getCopasGanadas();
+            int tarjetasAmarillas = x.getTarjetasAmarillas();
+            int tarjetasRojas = x.getTarjetasRojas();
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            int edad = (Integer) x.getEdad();
+            int numero = (Integer) x.getNumero();
+            int contrato = (Integer) x.getContrato();
+            DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+            modelo.removeAllElements();
+            modelo.addElement(nombre);
+            modelo.addElement(apellido);
+            modelo.addElement(nacionalidad);
+            modelo.addElement(edad);
+            modelo.addElement(numero);
+            modelo.addElement(contrato);
+            modelo.addElement(partidosJugados);
+            modelo.addElement(copasGanadas);
+            modelo.addElement(tarjetasAmarillas);
+            modelo.addElement(tarjetasRojas);
+            jlist.setModel(modelo);
+        } else if (persona_seleccionada instanceof Entrenador) {
+            Entrenador x = (Entrenador) persona_seleccionada;
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            int edad = x.getEdad();
+            int copas = x.getContrato();
+            int contrato = x.getContrato();
+            DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+            modelo.removeAllElements();;
+            modelo.addElement(nombre);
+            modelo.addElement(apellido);
+            modelo.addElement(nacionalidad);
+            modelo.addElement(edad);
+            modelo.addElement(copas);
+            modelo.addElement(contrato);
+            jlist.setModel(modelo);
+        } else if (persona_seleccionada instanceof PreparadorFisico) {
+            PreparadorFisico x = (PreparadorFisico) persona_seleccionada;
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            String especialidad = x.getEspecialidad();
+            String titulo = x.getTitulo();
+            int id = x.getEdad();
+            int edad = x.getId();
+            int contrato = x.getContrato();
+DefaultListModel modelo = (DefaultListModel) jlist.getModel();
+            modelo.removeAllElements();;
+            modelo.addElement(nombre);
+            modelo.addElement(apellido);
+            modelo.addElement(nacionalidad);
+            modelo.addElement(especialidad);
+            modelo.addElement(titulo);
+            modelo.addElement(id);
+            modelo.addElement(edad);
+            modelo.addElement(contrato);
+            jlist.setModel(modelo);
+        } else if (persona_seleccionada instanceof Psicologo) {
+            Psicologo x = (Psicologo) persona_seleccionada;
+            int informes = x.getInformes();
+            int jugadoresAtendidos = x.getJugadoresAtendidos();
+            String nombre = x.getNombre();
+            String apellido = x.getApellido();
+            String nacionalidad = x.getNacionalidad();
+            String especialidad = x.getEspecialidad();
+            String titulo = x.getTitulo();
+            int id = x.getId();
+            int edad = x.getEdad();
+
+        }
+    }//GEN-LAST:event_ModificarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -914,6 +1261,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton jb_entrenador;
     private javax.swing.JButton jb_juego;
@@ -925,6 +1277,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_jugador;
     private javax.swing.JDialog jd_preparadorfisico;
     private javax.swing.JDialog jd_psicologo;
+    private javax.swing.JList<String> jlist;
     private javax.swing.JSpinner js_contrato;
     private javax.swing.JSpinner js_contrato_e;
     private javax.swing.JSpinner js_contrato_p;
@@ -934,8 +1287,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner js_edad_p;
     private javax.swing.JSpinner js_edad_p1;
     private javax.swing.JSpinner js_numero;
+    private javax.swing.JTable jt_entrenador;
+    private javax.swing.JTable jt_jugador;
+    private javax.swing.JTable jt_preparador;
+    private javax.swing.JTable jt_psicologo;
     private javax.swing.JTree jtree;
+    private javax.swing.JDialog listar_entrenador;
+    private javax.swing.JDialog listar_jugador;
+    private javax.swing.JDialog listar_preparador;
+    private javax.swing.JDialog listar_psicologo;
     private javax.swing.JMenuItem menuItem_jtree;
+    private javax.swing.JDialog modificar;
     private javax.swing.JPopupMenu popup_crud;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_apellido_e;
