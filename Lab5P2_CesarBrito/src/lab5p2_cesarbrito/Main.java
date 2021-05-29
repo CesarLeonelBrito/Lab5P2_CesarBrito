@@ -120,6 +120,17 @@ public class Main extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jlist = new javax.swing.JList<>();
         jLabel27 = new javax.swing.JLabel();
+        jd_partidos = new javax.swing.JDialog();
+        jLabel30 = new javax.swing.JLabel();
+        tf_equiporival = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jb_jugador = new javax.swing.JButton();
@@ -732,6 +743,74 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
+        jLabel30.setText("Equipo Rival:");
+
+        jScrollPane7.setViewportView(jList1);
+
+        jScrollPane8.setViewportView(jList2);
+
+        jLabel31.setText("Jugadores Disponibles");
+
+        jLabel32.setText("Jugadores En El Juego");
+
+        jButton1.setText("------->");
+
+        jButton2.setText("Agregar Partido");
+
+        javax.swing.GroupLayout jd_partidosLayout = new javax.swing.GroupLayout(jd_partidos.getContentPane());
+        jd_partidos.getContentPane().setLayout(jd_partidosLayout);
+        jd_partidosLayout.setHorizontalGroup(
+            jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_partidosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_partidosLayout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_equiporival, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(72, 72, 72)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(jd_partidosLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel32)
+                .addGap(71, 71, 71))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_partidosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(243, 243, 243))
+        );
+        jd_partidosLayout.setVerticalGroup(
+            jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_partidosLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(tf_equiporival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32))
+                .addGroup(jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_partidosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_partidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane7)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)))
+                    .addGroup(jd_partidosLayout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(42, 42, 42))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
@@ -788,6 +867,11 @@ public class Main extends javax.swing.JFrame {
         jb_juego.setFocusable(false);
         jb_juego.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_juego.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_juego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_juegoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jb_juego);
 
         jMenu1.setText("Jtree");
@@ -1280,36 +1364,114 @@ public class Main extends javax.swing.JFrame {
                     m.reload();
                 } else if (persona_seleccionada instanceof Entrenador) {
                     Entrenador x = (Entrenador) persona_seleccionada;
-                    String nombre = x.getNombre();
-                    String apellido = x.getApellido();
-                    String nacionalidad = x.getNacionalidad();
-                    int edad = x.getEdad();
-                    int copas = x.getContrato();
-                    int contrato = x.getContrato();
+                    if (po == 0) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre: ");
+                        x.setNombre(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 1) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el apellido: ");
+                        x.setApellido(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 2) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la nacionalidad: ");
+                        x.setNacionalidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 3) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));
+                        x.setEdad(num);
+                        modelo.set(po, num);
+                    } else if (po == 4) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese las copas ganadas: "));
+                        x.setCopas(num);
+                        modelo.set(po, num);
+                    } else if (po == 5) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese los años del contrato: "));
+                        x.setContrato(num);
+                        modelo.set(po, num);
+                    }
                     DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
                     nodo_seleccionado.setUserObject(x);
                     m.reload();
                 } else if (persona_seleccionada instanceof PreparadorFisico) {
                     PreparadorFisico x = (PreparadorFisico) persona_seleccionada;
-                    String nombre = x.getNombre();
-                    String apellido = x.getApellido();
-                    String nacionalidad = x.getNacionalidad();
-                    String especialidad = x.getEspecialidad();
-                    String titulo = x.getTitulo();
-                    int id = x.getEdad();
-                    int edad = x.getId();
-                    int contrato = x.getContrato();
+                    if (po == 0) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre: ");
+                        x.setNombre(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 1) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el apellido: ");
+                        x.setApellido(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 2) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la nacionalidad: ");
+                        x.setNacionalidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 3) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la especialidad: ");
+                        x.setEspecialidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 4) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el titulo: ");
+                        x.setTitulo(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 5) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id: "));
+                        x.setId(num);
+                        modelo.set(po, num);
+                    } else if (po == 6) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));
+                        x.setEdad(num);
+                        modelo.set(po, num);
+                    } else if (po == 7) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese los años del contrato: "));
+                        x.setContrato(num);
+                        modelo.set(po, num);
+                    }
+                    DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
+                    nodo_seleccionado.setUserObject(x);
+                    m.reload();
                 } else if (persona_seleccionada instanceof Psicologo) {
                     Psicologo x = (Psicologo) persona_seleccionada;
-                    int informes = x.getInformes();
-                    int jugadoresAtendidos = x.getJugadoresAtendidos();
-                    String nombre = x.getNombre();
-                    String apellido = x.getApellido();
-                    String nacionalidad = x.getNacionalidad();
-                    String especialidad = x.getEspecialidad();
-                    String titulo = x.getTitulo();
-                    int id = x.getId();
-                    int edad = x.getEdad();
+                    if (po == 0) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre: ");
+                        x.setNombre(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 1) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el apellido: ");
+                        x.setApellido(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 2) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la nacionalidad: ");
+                        x.setNacionalidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 3) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese la especialidad: ");
+                        x.setEspecialidad(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 4) {
+                        String nombre = JOptionPane.showInputDialog("Ingrese el titulo: ");
+                        x.setTitulo(nombre);
+                        modelo.set(po, nombre);
+                    } else if (po == 5) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id: "));
+                        x.setId(num);
+                        modelo.set(po, num);
+                    } else if (po == 6) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));
+                        x.setEdad(num);
+                        modelo.set(po, num);
+                    } else if (po == 7) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de informes que ha realizado: "));
+                        x.setInformes(num);
+                        modelo.set(po, num);
+                    } else if (po == 8) {
+                        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de jugadores atendidos: "));
+                        x.setJugadoresAtendidos(num);
+                        modelo.set(po, num);
+                    }
+                    DefaultTreeModel m = (DefaultTreeModel) jtree.getModel();
+                    nodo_seleccionado.setUserObject(x);
+                    m.reload();
                 }
                 jlist.setModel(modelo);
             }
@@ -1317,6 +1479,14 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jd_entrenador, "OCURRIO UN ERROR");
         }
     }//GEN-LAST:event_jlistMouseClicked
+
+    private void jb_juegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_juegoActionPerformed
+        // TODO add your handling code here:
+        jd_partidos.setModal(true);
+        jd_partidos.pack();
+        jd_partidos.setLocationRelativeTo(this);
+        jd_partidos.setVisible(true);
+    }//GEN-LAST:event_jb_juegoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1363,6 +1533,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton agregar_psicologo;
     private javax.swing.JFormattedTextField ftf_id_p;
     private javax.swing.JFormattedTextField ftf_id_p1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1386,12 +1558,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1401,6 +1578,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton jb_entrenador;
     private javax.swing.JButton jb_juego;
@@ -1410,6 +1589,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_entrenador;
     private javax.swing.JDialog jd_jtree;
     private javax.swing.JDialog jd_jugador;
+    private javax.swing.JDialog jd_partidos;
     private javax.swing.JDialog jd_preparadorfisico;
     private javax.swing.JDialog jd_psicologo;
     private javax.swing.JList<String> jlist;
@@ -1438,6 +1618,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_apellido_e;
     private javax.swing.JTextField tf_apellido_p;
     private javax.swing.JTextField tf_apellido_p1;
+    private javax.swing.JTextField tf_equiporival;
     private javax.swing.JTextField tf_especialidad_p;
     private javax.swing.JTextField tf_especialidad_p1;
     private javax.swing.JTextField tf_nacionalidad;
@@ -1452,6 +1633,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_titulo_p1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Persona> personas = new ArrayList();
+    ArrayList<Partido> partidos = new ArrayList();
     DefaultMutableTreeNode nodo_seleccionado;
     Persona persona_seleccionada;
     int indexpersona;
